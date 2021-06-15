@@ -46,7 +46,7 @@ drwxr-xr-x 4 root root 46 Jun 13 21:02 kube-system_aws-node-ccj5z_b3f5beff-5c73-
 drwxr-xr-x 3 root root 24 Jun 13 21:02 kube-system_kube-proxy-rws4c_5b3f059e-b6e2-4eca-b6ef-8ce81368b71b
 ```
 
-This is scary and highly undesirable. Let me show a very simple security policy, that will stop anyone from running a privileged pod.
+This is scary and highly undesirable. Let me show a very simple security policy, that will stop anyone from running a privileged pod. You can learn more on pod security best practices here<sup>[9]</sup>
 
 ## 💡 Pod Security Policy Deprecation?
 
@@ -313,6 +313,7 @@ Thank you for your interest in contributing to our project. Whether it is a bug 
 1. [Kubernetes Docs: Pod Security Policies Deprecation][6]
 1. [Kubernetes Docs: Pod Security Policies Deprecation][7]
 1. [AWS Blog: Amazon EKS Pod Security Policy][8]
+1. [AWS Blog: Amazon EKS Best Practices][9]
 
 ### 🏷️ Metadata
 
@@ -328,6 +329,7 @@ Thank you for your interest in contributing to our project. Whether it is a bug 
 [6]: https://kubernetes.io/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/
 [7]: https://kubernetes.io/docs/concepts/policy/pod-security-policy/
 [8]: https://aws.amazon.com/blogs/opensource/using-pod-security-policies-amazon-eks-clusters/
+[9]: https://aws.github.io/aws-eks-best-practices/security/docs/pods/
 [100]: https://www.udemy.com/course/aws-cloud-security/?referralCode=B7F1B6C78B45ADAF77A9
 [101]: https://www.udemy.com/course/aws-cloud-security-proactive-way/?referralCode=71DC542AD4481309A441
 [102]: https://www.udemy.com/course/aws-cloud-development-kit-from-beginner-to-professional/?referralCode=E15D7FB64E417C547579
