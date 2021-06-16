@@ -46,11 +46,13 @@ drwxr-xr-x 4 root root 46 Jun 13 21:02 kube-system_aws-node-ccj5z_b3f5beff-5c73-
 drwxr-xr-x 3 root root 24 Jun 13 21:02 kube-system_kube-proxy-rws4c_5b3f059e-b6e2-4eca-b6ef-8ce81368b71b
 ```
 
-This is scary and highly undesirable. Let me show a very simple security policy, that will stop anyone from running a privileged pod. You can learn more on pod security best practices here<sup>[9]</sup>
+This is scary and highly undesirable.
 
 ## 💡 Pod Security Policy Deprecation?
 
-Having said all the scary stuff, Are PSPs the way to secure you pods now and in the future. The kubernetes community thinks otherwise. PodSecurityPolicy is deprecated<sup>[6],[7]</sup> as of Kubernetes v`1.21`, and will be removed in v`1.25`.
+Having said all the scary stuff, Are PSPs the way to secure you pods now and in the future. The kubernetes community thinks otherwise. PodSecurityPolicy is deprecated<sup>[6],[7]</sup> as of Kubernetes v`1.21`, and will be removed in v`1.25`. If that is being deprecated, what do we need to use to secure our cluster, The community has developed a Kubernetes Enhancement Proposal (KEP 2579) and a prototype for a new feature, currently being called by the temporary name "_PSP Replacement Policy_." It is being targeting for an Alpha release in Kubernetes `1.22`. Until then we can continue using the current PSPs
+
+Let me show a very simple security policy, that will stop anyone from running a privileged pod. You can learn more on pod security best practices here<sup>[9]</sup>. We will use a simple AWS EKS cluster with couple of nodes to setup PSP.
 
 1. ## 🧰 Prerequisites
 
@@ -141,7 +143,7 @@ Having said all the scary stuff, Are PSPs the way to secure you pods now and in 
      After successfully deploying the stack, Check the `Outputs` section of the stack. You will find the `*ConfigCommand*` that allows yous to interact with your cluster using `kubectl`
 
    - **Stack: ssm-agent-installer-daemonset-stack**
-     This EKS AMI used in this stack does not include the AWS SSM Agent out of the box. If we ever want to patch or run something remotely on our EKS nodes, this agent is really helpful to automate those tasks. We will deploy a daemonset that will _run exactly once?_ on each node using a cron entry injection that deletes itself after successful execution. If you are interested take a look at the deamonset manifest here `stacks/back_end/eks_cluster_stacks/eks_ssm_daemonset_stack/eks_ssm_daemonset_stack.py`. This is inspired by this AWS guidance<sup>[7]</sup>.
+     This EKS AMI used in this stack does not include the AWS SSM Agent out of the box. If we ever want to patch or run something remotely on our EKS nodes, this agent is really helpful to automate those tasks. We will deploy a daemonset that will _run exactly once?_ on each node using a cron entry injection that deletes itself after successful execution. If you are interested take a look at the deamonset manifest here `stacks/back_end/eks_cluster_stacks/eks_ssm_daemonset_stack/eks_ssm_daemonset_stack.py`. This is inspired by AWS guidance.
 
      Initiate the deployment with the following command,
 
@@ -149,7 +151,7 @@ Having said all the scary stuff, Are PSPs the way to secure you pods now and in 
      cdk deploy ssm-agent-installer-daemonset-stack
      ```
 
-     After successfully deploying the stack, You can use connect to the worker nodes instance using SSM Session Manager<sup>[8]</sup>.
+     After successfully deploying the stack, You can use connect to the worker nodes instance using SSM Session Manager.
 
 1. ## 🔬 Testing the solution
 
